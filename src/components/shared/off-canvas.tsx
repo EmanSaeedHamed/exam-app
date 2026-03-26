@@ -5,8 +5,10 @@ import logoApp from "../../assets/images/Final Logo 1.svg";
 import folderCodeIcon from "../../assets/images/folder-code.svg";
 import userAvatar from "../../assets/images/user-image.jpg"
 import Link from "next/link";
-import { EllipsisVertical, GraduationCap, UserRound } from "lucide-react";
+import { GraduationCap, UserRound } from "lucide-react";
 import { usePathname } from "next/navigation";
+import Dropdown from "../ui/dropdown";
+
 
 export default function OffCanvas() {
   const pathname = usePathname();
@@ -45,6 +47,9 @@ export default function OffCanvas() {
           </ul>
         </div>
        
+
+        
+
           {/* user */}
           <div className="flex items-center gap-2.5">
             <Image src={userAvatar} alt="user avatar" className="size-14 border border-blue-600 object-cover"/>
@@ -56,9 +61,11 @@ export default function OffCanvas() {
                 user-email@example.com
                 </p>
             </div>
-            <EllipsisVertical className="text-gray-500"/>
+            <Dropdown/>
           </div>
       </div>
     </>
   );
 }
+
+
