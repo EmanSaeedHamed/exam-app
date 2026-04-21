@@ -5,8 +5,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import Link from "next/link"
+} from "@/shared/components/ui/breadcrumb";
+import Link from "next/link";
 
 export function BreadCrumb() {
   return (
@@ -29,5 +29,5 @@ export function BreadCrumb() {
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
-  )
+  );
 }

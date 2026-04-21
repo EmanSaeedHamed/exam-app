@@ -1,9 +1,12 @@
 import { Geist_Mono, Geist } from "next/font/google";
-import {Inter} from 'next/font/google';
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
+import { Toaster } from "@/shared/components/ui/sonner";
+import { RegisterContextProvider } from "@/shared/context/register-context";
+import Providers from "@/shared/context/providers";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,8 +18,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,9 +26,21 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", inter.variable, geistMono.variable, "font-sans", geist.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        inter.variable,
+        geistMono.variable,
+        "font-sans",
+        geist.variable,
+      )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+      <Providers>
+      {children}
+     </Providers>
+        
+      </body>
     </html>
   );
 }

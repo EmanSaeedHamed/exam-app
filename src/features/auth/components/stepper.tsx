@@ -10,7 +10,7 @@ export default function Stepper({ steps = 4, currentStep = 1 }) {
         const isCompleted = step < currentStep;
         const isActive = step === currentStep;
 
-        return <>
+        return <React.Fragment key={step}>
             {/* Step */}
             <div
               className={`flex items-center justify-center border rotate-45 transition-all duration-300
@@ -38,7 +38,7 @@ export default function Stepper({ steps = 4, currentStep = 1 }) {
                 }`}
               ></div>
             )}
-          </>
+          </React.Fragment>
         
       })}
     </div>
