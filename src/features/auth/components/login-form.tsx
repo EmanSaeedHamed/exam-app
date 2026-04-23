@@ -39,7 +39,7 @@ export default function LoginForm() {
     console.log(res);
     if(res?.ok){
       toast.success("you logges successfully");
-      window.location.href = "/";
+      // window.location.href = "/";
     }else{
       toast.error(res?.error);
     }
