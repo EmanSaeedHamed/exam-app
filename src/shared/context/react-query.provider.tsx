@@ -1,6 +1,6 @@
 // In Next.js, this file would be called: app/providers.tsx
 'use client'
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 // Since QueryClientProvider relies on useContext under the hood, we have to put 'use client' on top
 import {
   isServer,
@@ -44,6 +44,9 @@ export default function ReactQueryProvider({ children }: { children: React.React
   const queryClient = getQueryClient()
 
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      {children}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   )
 }

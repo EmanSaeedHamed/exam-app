@@ -2,7 +2,8 @@
 import {
   BookOpenCheck,
   ChevronDown,
-  ChevronLeft
+  ChevronLeft,
+  CircleQuestionMark
 } from "lucide-react";
 
 import Link from "next/link";
@@ -27,7 +28,7 @@ export default function ExamScreen() {
             <ChevronLeft className="size-6 text-blue-600"/>
             </Link>
         <div className="bg-blue-600 p-4 flex items-center gap-4 text-white flex-1">
-          <BookOpenCheck className="size-10" />
+          <CircleQuestionMark className="size-10" />
           <span className="font-inter text-[32px] font-semibold">Diploma</span>
         </div>
         </div>
