@@ -151,45 +151,77 @@ export default function UserInfoForm() {
           {/* phone */}
 
           <FieldGroup>
-            <Controller
-              name="phone"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid}>
-                  <FieldLabel htmlFor="form-phone" className="block">
-                    Phone
-                    <span className="text-red-600">*</span>
-                  </FieldLabel>
+           <Controller
+    name="phone"
+    control={form.control}
+    render={({ field, fieldState }) => (
+      <Field data-invalid={fieldState.invalid}>
+        <FieldLabel htmlFor="form-phone" className="block">
+          Phone <span className="text-red-600">*</span>
+        </FieldLabel>
 
-                  <PhoneInput
-                    defaultCountry="eg"
-                    value={field.value}
-                    onChange={(phone) => field.onChange(phone)}
-                    inputProps={{
-                      id: "form-phone",
-                      "aria-invalid": fieldState.invalid,
-                      autoComplete: "off",
-                      placeholder: "+20 1012345678",
-                    }}
-                  />
+        {/* wrapper */}
+        <div
+          className={`
+            flex items-center gap-2 w-full p-2 border
+            transition
+            ${fieldState.invalid ? "border-red-600" : "border-gray-300"}
+            focus-within:border-blue-600
+          `}
+        >
+          <PhoneInput
+  defaultCountry="eg"
+  value={field.value}
+  onChange={(phone) => field.onChange(phone)}
+  disableDialCodeAndPrefix
+  className="w-full flex items-center"
+  inputClassName="
+    !border-none
+    !outline-none
+    !shadow-none
+    !w-full
+    !h-full
+    !text-sm
+    !font-mono
+    !bg-transparent
+    placeholder:!text-gray-400
+  "
+  countrySelectorStyleProps={{
+    buttonClassName:
+      "!border-none !bg-transparent !px-2 !flex !items-center",
+    dropdownStyleProps: {
+      className: "!font-mono",
+    },
+  }}
+  inputProps={{
+    id: "form-phone",
+    "aria-invalid": fieldState.invalid,
+    autoComplete: "off",
+    placeholder: "+20 1012345678",
+  }}
+/>
 
-                  {fieldState.invalid && (
-                    <FieldError
-                      className="text-red-600 font-mono"
-                      errors={[fieldState.error]}
-                    />
-                  )}
-                </Field>
-              )}
-            />
+        </div>
+
+        {fieldState.invalid && (
+          <FieldError
+            className="text-red-600 font-mono"
+            errors={[fieldState.error]}
+          />
+        )}
+      </Field>
+    )}
+  />
           </FieldGroup>
+
+
 
           {isSubmitted && Object.keys(errors).length > 0 && (
             <div className="border border-red-600 mt-10 bg-red-50 w-full py-2.5 text-center relative">
               <p className="text-sm font-mono text-red-600">
                 Something went wrong
               </p>
-              <CircleX className="absolute text-red-600 size-[18px] bg-white left-1/2 -translate-1/2 top-0" />
+              <CircleX className="absolute text-red-600 size-4.5 bg-white left-1/2 -translate-1/2 top-0" />
             </div>
           )}
 

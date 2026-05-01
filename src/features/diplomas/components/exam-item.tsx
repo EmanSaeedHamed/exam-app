@@ -12,7 +12,7 @@ export default function ExamItem({
   payload: IExam;
   diplomaId: string;
 }) {
-  const { id, image, description, title, duration } = payload;
+  const { id, image, description, title, duration, questionsCount } = payload;
   const [isHovered, setIsHovered] = useState(false);
   return (
     <>
@@ -45,7 +45,7 @@ export default function ExamItem({
               {/* question */}
               <div className="flex justify-between items-center gap-1.5 text-gray-800 font-mono text-sm">
                 <CircleQuestionMark className="size-4.5" />
-                <span>25</span>
+                <span>{questionsCount}</span>
                 <span>Questions</span>
               </div>
               {/* duration */}

@@ -41,10 +41,10 @@ export async function getDiplomaById(
 
 
 // Get all exams
-export async function getAllExams({ pageParam = 1,id }: { pageParam?: number,id:string }): Promise<IDiplomaExamsResponse> {
+export async function getAllExams({ pageParam = 1,diplomaId }: { pageParam?: number,diplomaId:string }): Promise<IDiplomaExamsResponse> {
   const token = await getNextAuthToken();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/exams?page=${pageParam}&limit=2&diplomaId=${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/exams?page=${pageParam}&limit=2&diplomaId=${diplomaId}`,
     {
       method: "GET",
       headers: {

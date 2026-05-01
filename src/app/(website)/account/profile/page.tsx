@@ -1,5 +1,4 @@
+import ProfileScreen from "@/features/account-settings/screens/profile.screen";
 export default function page() {
-    return<>
-    <h2>profile page</h2>
-    </>
+    return <ProfileScreen/>
   }

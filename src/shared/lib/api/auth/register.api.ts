@@ -5,7 +5,7 @@ import { TVerifyEmailSchema } from "@/features/auth/schemas/verify-email-schema"
 
 // send email verify 
 export async function sendEmailVerify(values:TEmailSchema) {
-    const response = await fetch("https://exam-app.elevate-bootcamp.cloud/api/auth/send-email-verification", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/send-email-verification`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export async function sendEmailVerify(values:TEmailSchema) {
 
 // confirm-email-verification
 export async function confirmEmailVerify(values:TVerifyEmailSchema) {
-  const response = await fetch("https://exam-app.elevate-bootcamp.cloud/api/auth/confirm-email-verification", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/confirm-email-verification`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export async function confirmEmailVerify(values:TVerifyEmailSchema) {
 
 // Register
 export async function register(values:TPasswordSchema) {
-  const response = await fetch("https://exam-app.elevate-bootcamp.cloud/api/auth/register", {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

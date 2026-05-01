@@ -9,7 +9,6 @@ import {
 import { Input } from "@/shared/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
-import Link from "next/link";
 import { CircleX, Eye, EyeOff } from "lucide-react";
 import { useContext, useState } from "react";
 import Stepper from "./stepper";
@@ -88,12 +87,12 @@ export default function PasswordForm() {
                   {showPass ? (
                     <Eye
                       onClick={() => setShowPass(!showPass)}
-                      className="absolute right-2.5 size-[18px] text-gray-400 cursor-pointer"
+                      className="absolute right-2.5 size-4.5 text-gray-400 cursor-pointer"
                     />
                   ) : (
                     <EyeOff
                       onClick={() => setShowPass(!showPass)}
-                      className="absolute right-2.5 size-[18px] text-gray-400 cursor-pointer"
+                      className="absolute right-2.5 size-4.5 text-gray-400 cursor-pointer"
                     />
                   )}
                 </div>
@@ -133,14 +132,14 @@ export default function PasswordForm() {
                       onClick={() =>
                         setShowConfirmPassword(!showConfirmPassword)
                       }
-                      className="absolute right-2.5 size-[18px] text-gray-400 cursor-pointer"
+                      className="absolute right-2.5 size-4.5 text-gray-400 cursor-pointer"
                     />
                   ) : (
                     <EyeOff
                       onClick={() =>
                         setShowConfirmPassword(!showConfirmPassword)
                       }
-                      className="absolute right-2.5 size-[18px] text-gray-400 cursor-pointer"
+                      className="absolute right-2.5 size-4.5 text-gray-400 cursor-pointer"
                     />
                   )}
                 </div>
@@ -161,7 +160,7 @@ export default function PasswordForm() {
             <p className="text-sm font-mono text-red-600">
               Something went wrong
             </p>
-            <CircleX className="absolute text-red-600 size-[18px] bg-white left-1/2 -translate-1/2 top-0" />
+            <CircleX className="absolute text-red-600 size-4.5 bg-white left-1/2 -translate-1/2 top-0" />
           </div>
         )}
 

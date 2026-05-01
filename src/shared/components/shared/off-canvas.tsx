@@ -19,7 +19,7 @@ export default function OffCanvas() {
 
   return (
     <>
-      <div className="bg-blue-50 fixed top-0 bottom-0 w-[370px] p-8 flex flex-col justify-between">
+      <div className="bg-blue-50 fixed top-0 bottom-0 w-92.5 p-8 flex flex-col justify-between">
         {/* Exam App Logo */}
         <div>
           <Image src={logoApp} alt="elavate logo app" className="mb-2.5" />

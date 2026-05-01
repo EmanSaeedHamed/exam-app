@@ -33,13 +33,13 @@ export default function LoginForm() {
     const res = await signIn("credentials", {
       username: values.username,
       password: values.password,
-      redirect: true,
+      redirect: false,
       callbackUrl: "/"
     })
     console.log(res);
     if(res?.ok){
       toast.success("you logges successfully");
-      // window.location.href = "/";
+      window.location.href = "/";
     }else{
       toast.error(res?.error);
     }

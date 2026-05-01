@@ -15,7 +15,7 @@ export default function RegisterForm() {
   return (
     <>
       <div className="py-60">
-        <div className="max-w-[452px] mx-auto">
+        <div className="max-w-113 mx-auto">
           {step == "email" && <EmailForm />}
           {step == "verifyEmail" && <VerifyEmailForm />}
           {step == "userInfo" && <UserInfoForm />}

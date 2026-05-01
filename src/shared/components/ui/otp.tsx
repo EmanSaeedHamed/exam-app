@@ -3,6 +3,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/shared/components/ui/input-otp";
+import { useEffect, useState } from "react";
 
 type OtpProps = {
   value?: string;
@@ -10,6 +11,17 @@ type OtpProps = {
 };
 
 export default function Otp({ value, onChange }: OtpProps) {
+   const [time, setTime] = useState(60);
+
+  useEffect(() => {
+    if (time === 0) return;
+
+    const timer = setInterval(() => {
+      setTime((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [time]);
   return (
     <>
       <InputOTP maxLength={6} value={value} onChange={onChange}>
@@ -23,7 +35,7 @@ export default function Otp({ value, onChange }: OtpProps) {
         </InputOTPGroup>
       </InputOTP>
       <p className="mt-6 font-mono font-medium text-sm text-gray-500">
-        You can request another code in: 60s
+        You can request another code in: {time}s
       </p>
     </>
   );

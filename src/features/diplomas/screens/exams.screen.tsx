@@ -12,17 +12,25 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import ExamsSkeleton from "@/shared/skeletons/exams.skeleton";
 import { useParams } from "next/navigation";
+
+interface PageProp {
+  params: {
+    diplomaId: string;
+  };
+};
 export default function ExamsScreen() {
-  const params = useParams();
-  const id = params.id as string;
+  const { diplomaId } = useParams() as { diplomaId: string };
+  console.log(typeof diplomaId);
+  
   const {
     data,
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ['diplomaExams', id],
-    queryFn: ({ pageParam }) => getAllExams({ pageParam,id }),
+    queryKey: ['diplomaExams', diplomaId],
+    queryFn: ({ pageParam }:{ pageParam: number }) => getAllExams({ pageParam, diplomaId}),
     initialPageParam: 1,
+    enabled: !!diplomaId,
     getNextPageParam: (lastPage) => {
       const currentPage = lastPage?.payload?.metadata?.page;
       const totalPages = lastPage?.payload?.metadata?.totalPages;
@@ -50,6 +58,10 @@ export default function ExamsScreen() {
   
     // Flatten all pages into a single list of diplomas
     const exams = data?.pages.flatMap((page) => page?.payload?.data ?? []);
+    console.log(data);
+    console.log(exams);
+    
+    
 
   return (
     <>
@@ -78,7 +90,7 @@ export default function ExamsScreen() {
                                   {/* diplomas */}
           <div className="my-6 grid grid-cols-1 gap-2.5 mt-0 bg-white">
             {exams?.map((exam) => (
-              <ExamItem payload={exam} diplomaId={id} key={exam.id} />
+              <ExamItem payload={exam} diplomaId={diplomaId} key={exam.id} />
             ))}
           </div>
             
