@@ -27,6 +27,7 @@ export default function ForgotPasswordEmail() {
   const form = useForm({
     defaultValues: {
       email: "",
+      redirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/forgot-password`
     },
     resolver: zodResolver(forgotPasswordEmailSchema),
   });
@@ -34,18 +35,8 @@ export default function ForgotPasswordEmail() {
   const { handleSubmit } = form;
 
   async function handleRegister(values: TForgotPasswordEmailSchema) {
-    const redirectUrl =
-      typeof window !== "undefined"
-        ? `${window.location.origin}/forgot-password`
-        : "";
-
-    const payload = await sendEmailForgotPassword({
-      ...values,
-      redirectUrl,
-    });
-
+    const payload = await sendEmailForgotPassword(values);
     toast(payload.message);
-
     if (payload.status) {
       ctx?.setStep("verifyEmail");
       ctx?.setEmail(values.email);
