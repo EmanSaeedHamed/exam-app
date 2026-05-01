@@ -21,7 +21,7 @@ export default function ForgotPasswordEmail() {
   const form = useForm({
     defaultValues: {
       email: "",
-      redirectUrl: `${window.location.origin}/forgot-password`
+      redirectUrl: `${process.env.NEXTAUTH_URL}/forgot-password`
     },
     resolver: zodResolver(forgotPasswordEmailSchema),
   });
