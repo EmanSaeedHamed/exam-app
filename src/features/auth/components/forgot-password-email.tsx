@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/shared/components/ui/button";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
@@ -11,40 +12,56 @@ import {
 import { Input } from "@/shared/components/ui/input";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { forgotPasswordEmailSchema, TForgotPasswordEmailSchema } from "../schemas/email.schema";
+import {
+  forgotPasswordEmailSchema,
+  TForgotPasswordEmailSchema,
+} from "../schemas/email.schema";
 import { toast } from "sonner";
 import { sendEmailForgotPassword } from "@/shared/lib/api/auth/forgot-password.api";
 import { useContext } from "react";
 import { RegisterContext } from "@/shared/context/register-context";
+
 export default function ForgotPasswordEmail() {
   const ctx = useContext(RegisterContext);
+
   const form = useForm({
     defaultValues: {
       email: "",
-      redirectUrl: `${process.env.NEXTAUTH_URL}/forgot-password`
     },
     resolver: zodResolver(forgotPasswordEmailSchema),
   });
+
   const { handleSubmit } = form;
 
   async function handleRegister(values: TForgotPasswordEmailSchema) {
-    console.log(values);
-    const payload = await sendEmailForgotPassword(values);
-    console.log(payload);
+    const redirectUrl =
+      typeof window !== "undefined"
+        ? `${window.location.origin}/forgot-password`
+        : "";
+
+    const payload = await sendEmailForgotPassword({
+      ...values,
+      redirectUrl,
+    });
+
     toast(payload.message);
+
     if (payload.status) {
       ctx?.setStep("verifyEmail");
       ctx?.setEmail(values.email);
-      console.log(ctx?.setStep);
-      
     }
   }
+
   return (
     <>
       <h2 className="font-inter font-bold text-3xl text-gray-800">
         Forgot Password
       </h2>
-      <p className="mb-10 mt-2.5 font-mono text-gray-500">Don’t worry, we will help you recover your account.</p>
+
+      <p className="mb-10 mt-2.5 font-mono text-gray-500">
+        Don’t worry, we will help you recover your account.
+      </p>
+
       <form onSubmit={handleSubmit(handleRegister)}>
         <FieldGroup>
           <Controller
@@ -72,9 +89,8 @@ export default function ForgotPasswordEmail() {
           />
         </FieldGroup>
 
-        <Button  type="submit" className="w-full mt-10">
-          {" "}
-          Next <ChevronRight />{" "}
+        <Button type="submit" className="w-full mt-10">
+          Next <ChevronRight />
         </Button>
       </form>
 
