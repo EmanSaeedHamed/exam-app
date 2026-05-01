@@ -1,7 +1,10 @@
-import ForgotPasswordScreen from "@/features/auth/screens/forgot-password.screen";
+import ForgotPasswordForm from "@/features/auth/components/forgot-password-form";
+import { Suspense } from "react";
 
-export default function page() {
-  return <>
-    <ForgotPasswordScreen/>
-  </>
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <ForgotPasswordForm />
+    </Suspense>
+  );
 }

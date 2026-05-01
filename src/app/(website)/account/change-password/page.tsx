@@ -1,5 +1,7 @@
+import ChangePassword from "@/features/account-settings/screens/change-password.screen";
+
 export default function page() {
     return<>
-     <h2>change password page</h2>
+       <ChangePassword/>
     </>
   }
