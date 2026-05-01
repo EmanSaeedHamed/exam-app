@@ -21,7 +21,7 @@ export default function ForgotPasswordEmail() {
   const form = useForm({
     defaultValues: {
       email: "",
-      redirectUrl: "http://localhost:3000/forgot-password"
+      redirectUrl: `${window.location.origin}/forgot-password`
     },
     resolver: zodResolver(forgotPasswordEmailSchema),
   });
